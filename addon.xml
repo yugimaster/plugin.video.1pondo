@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.1pondo"
+       name="1pondo"
+       version="0.0.1"
+       provider-name="yugimaster">
+  <requires>
+    <import addon="script.module.xbmcswift2" version="2.4.0"/>
+    <import addon="script.module.requests" version="2.12.4"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="zh-CN">一本道</summary>
+    <description>www.1pondo.tv</description>
+    <platform>all</platform>
+    <website></website>
+    <forum></forum>
+    <source></source>
+  </extension>
+</addon>
