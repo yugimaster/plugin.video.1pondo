@@ -26,12 +26,27 @@ def index():
     if not json_query:
         return
     for item in json_query['data']['videos']:
-        listitem = {
+        movie_id = item['MovieID']
+        year = "20" + movie_id[4:6]
+        image = IMAGE_API + year + "/" + movie_id + "/popu.jpg"
+        listitem = ListItem.from_dict(**{
             'label': item['Title'],
-            'path': PLAY_API + item['MovieID'] + "/hls/index.m3u8",
-            'icon': IMAGE_API + item['MovieID'] + "/popu.jpg",
-            'is_playable': True
-        }
+            'path': PLAY_API + movie_id + "/hls/index.m3u8",
+            'icon': image,
+            'info': {"Title": item['Title'],
+                     "OriginalTitle": item['Title'],
+                     "Year": int(year),
+                     "Country": "Japan",
+                     "Plot": item['Desc'],
+                     "Rating": str(item['AvgRating'] * 2.0),
+                     "MPAA": "R",
+                     "Cast": item['ActressesJa'],
+                     "CastAndRole": item['ActressesEn'],
+                     "Duration": item['Duration'],
+                     "premiered": year + "-" + movie_id[:2] + "-" + movie_id[2:4],
+                     "mediatype": "movie"},
+            'is_playable': True,
+        })
         yield listitem
 
 
